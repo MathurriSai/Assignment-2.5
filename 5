@@ -1,0 +1,23 @@
+1. Explain what is a cluster and what is a hadoop cluster
+
+Clusters are group of systems taht performs a specific task which will act as a single system.In a computer system, a cluster is a group of
+servers and other resources that act like a single system and enable high availability and, in some cases, load balancing and parallel
+processing. 
+
+A Hadoop cluster is a special type of computational cluster designed specifically for storing and analyzing huge amounts of unstructured 
+data in a distributed computing environment.one machine will be name node and other machines will be job tracker.the rest will act as data
+node and task tracker.And they are mainly used for boosting the speed of the process.
+
+
+
+2.What is meant by a Rack and explain the rack arrangement in a hadoop cluster
+
+        Rack is a place where all the nodes will be arranged.And a rack can store upto 30-40 nodes together.And with the help of a switch the 
+ racks can be connected together in a network.And the main purpose of rack is to minimize the network traffic.for the process of
+writing and reading files namenode will pick the node which are closer in a same rack.because when the nodes are of same rack then 
+ transmission will be more efficient than the nodes in different racks.
+ 
+        Name node will have the reack information by by mainataining rack id's of each node.one can place replica in a rack.by placing
+ replica losing of data can be minimized when the node fails by using the bandwidth of teh node.and there is a restriction than
+not more than one replica can be placed in asingle node and not more than two in a rack.by defaul hadoo installation will assume that 
+all nodes belong to a same rack.
