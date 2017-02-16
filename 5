@@ -1,12 +1,14 @@
 1. Explain what is a cluster and what is a hadoop cluster
 
-Clusters are group of systems taht performs a specific task which will act as a single system.In a computer system, a cluster is a group of
-servers and other resources that act like a single system and enable high availability and, in some cases, load balancing and parallel
-processing. 
+        Clusters are group of computers connected together and which act as a single system which are connected by means of a LAN.these clusters
+act as a single one which has a higher speed and a huge storage capacity.but inn case of maintainance and cost it is costly and not easy to
+maintain.
 
-A Hadoop cluster is a special type of computational cluster designed specifically for storing and analyzing huge amounts of unstructured 
-data in a distributed computing environment.one machine will be name node and other machines will be job tracker.the rest will act as data
-node and task tracker.And they are mainly used for boosting the speed of the process.
+        In contrast Hadoop is a special type of cluster which is more similar but ost wise it is not much expensive where a huge pile of 
+unstructered data can be stored in a distributed format.where one machine will act as name node and others will perform the process of job 
+tracker.whereas there will be a system acting as data node and other systems as task tracker.and it's mainly done for boosting up of speed.
+most of teh process will be done by worker nodes whose job is to store data and to run the process.the process of worker node is to
+run the datanodew and tasktracker which communicate with the master node and helps to receive the information.
 
 
 
@@ -18,18 +20,16 @@ writing and reading files namenode will pick the node which are closer in a same
  transmission will be more efficient than the nodes in different racks.
  
         Name node will have the reack information by by mainataining rack id's of each node.one can place replica in a rack.by placing
- replica losing of data can be minimized when the node fails by using the bandwidth of teh node.and there is a restriction than
-not more than one replica can be placed in asingle node and not more than two in a rack.by defaul hadoo installation will assume that 
+ replica losing of data can be minimized when the node fails by using the bandwidth of the node.and there is a restriction than
+not more than one replica can be placed in a single node and not more than two in a rack.by defaul hadoo installation will assume that 
 all nodes belong to a same rack.
-        By default, data is replicated to two other places in the cluster. A pipeline is built between the three DataNodes that make up 
-the pipeline. The second DataNode is a randomly chosen node on a rack other than that of the first replica of the block. This is to 
-increase redundancy.The final replica is placed on a random node within the same rack as the second replica. The data is piped from the 
-second DataNode to the third.
 
-          After the write process have been completed,the packets are sent from third node
-
-To ensure the write was successful before continuing, acknowledgment packets are sent from the third DataNode to the second, From the 
-second DataNode to the first And from the first DataNode to the client.This process occurs for each of the blocks that makes up the file.
-For every block, by default, there is a replica on at least two racks. When the client is done writing to the DataNode pipeline and has 
-received .Acknowledgements, it tells the NameNode that the write has completed. The NameNode then checks that the blocks are at least 
-minimally replicated before responding.
+        It is already said tha all the data will have a replica intwo other places.and the pipeline is made of three datanodes.first datanode
+will be chosen and he second one will chosen in random and the one near the first datanode has more chance to be chosen as the second data node.
+and pipeline will be from second to third node.
+        
+        After the write process have been completed,the packets are sent from thirdDatanode will send acknowledgement to the second 
+DataNode and then will be passed form the second towards first later to the client datanode.and this is a repeated process for all the 
+files in a block.and every file will have its replica in any of two racks.After the written process gets done by the client acknowlegement will be 
+done which will inform that the written process is over.as well the namenode will check whethere there is a minimal replication for each
+blocks.
