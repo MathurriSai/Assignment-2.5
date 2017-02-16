@@ -21,3 +21,15 @@ writing and reading files namenode will pick the node which are closer in a same
  replica losing of data can be minimized when the node fails by using the bandwidth of teh node.and there is a restriction than
 not more than one replica can be placed in asingle node and not more than two in a rack.by defaul hadoo installation will assume that 
 all nodes belong to a same rack.
+        By default, data is replicated to two other places in the cluster. A pipeline is built between the three DataNodes that make up 
+the pipeline. The second DataNode is a randomly chosen node on a rack other than that of the first replica of the block. This is to 
+increase redundancy.The final replica is placed on a random node within the same rack as the second replica. The data is piped from the 
+second DataNode to the third.
+
+          After the write process have been completed,the packets are sent from third node
+
+To ensure the write was successful before continuing, acknowledgment packets are sent from the third DataNode to the second, From the 
+second DataNode to the first And from the first DataNode to the client.This process occurs for each of the blocks that makes up the file.
+For every block, by default, there is a replica on at least two racks. When the client is done writing to the DataNode pipeline and has 
+received .Acknowledgements, it tells the NameNode that the write has completed. The NameNode then checks that the blocks are at least 
+minimally replicated before responding.
